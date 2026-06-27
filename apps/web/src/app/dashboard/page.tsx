@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { Shell } from "@/components/shell";
-import { UploadForm } from "@/components/upload-form";
-import { fetchJson } from "@/lib/api";
+import { Shell } from "../../components/shell";
+import { UploadForm } from "../../components/upload-form";
+import { fetchJson } from "../../lib/api";
 
 type ScriptListItem = {
   id: string;

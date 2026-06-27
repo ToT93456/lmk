@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { Shell } from "@/components/shell";
-import { fetchJson, getApiUrl } from "@/lib/api";
+import { Shell } from "../components/shell";
+import { fetchJson, getApiUrl } from "../lib/api";
 
 type ScriptListItem = {
   id: string;

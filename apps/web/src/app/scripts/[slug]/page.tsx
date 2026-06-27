@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { Shell } from "@/components/shell";
-import { fetchJson, getApiUrl } from "@/lib/api";
+import { Shell } from "../../../components/shell";
+import { fetchJson, getApiUrl } from "../../../lib/api";
 
 type ScriptDetails = {
   id: string;

@@ -1,0 +1,6 @@
+package.json => 7B 0A 20
+apps/api/package.json => 7B 0A 20
+apps/web/package.json => 7B 0A 20
+tsconfig.base.json => 7B 0A 20
+apps/api/tsconfig.json => 7B 0A 20
+apps/web/tsconfig.json => 7B 0A 20

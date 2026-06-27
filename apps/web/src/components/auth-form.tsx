@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { getApiUrl } from "@/lib/api";
+import { getApiUrl } from "../lib/api";
 
 const registerSchema = z.object({
   email: z.string().email(),

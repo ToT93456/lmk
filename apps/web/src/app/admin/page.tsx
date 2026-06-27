@@ -1,5 +1,5 @@
-import { Shell } from "@/components/shell";
-import { fetchJson } from "@/lib/api";
+import { Shell } from "../../components/shell";
+import { fetchJson } from "../../lib/api";
 
 type AdminDashboard = {
   users: number;

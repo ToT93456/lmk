@@ -1,5 +1,5 @@
-import { AuthForm } from "@/components/auth-form";
-import { Shell } from "@/components/shell";
+import { AuthForm } from "../../components/auth-form";
+import { Shell } from "../../components/shell";
 
 export default function RegisterPage() {
   return (
