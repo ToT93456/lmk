@@ -1,42 +1,53 @@
-# Private Script Hub
+﻿# Lua Script Hub
 
-หน้าเว็บแบบ `HTML + CSS + JavaScript` สําหรับแยกหน้า `Home` และ `Script`
-โดยหน้าคัดลอกจะดึงสคริปต์จาก `URL` ภายนอกหรือเว็บที่คุณโฮสเอง แทนการเก็บโค้ดไว้ในหน้าเว็บตรง ๆ
+Production-ready monorepo for hosting, organizing, and serving legitimate Lua scripts.
 
-## โครงสร้างไฟล์
+## Stack
 
-- `index.html` หน้าเว็บหลักแบบ static
-- `assets/style.css` สไตล์หน้าเว็บ
-- `assets/config.js` ตั้งค่า URL ของสคริปต์
-- `assets/app.js` logic ของแท็บและปุ่ม Copy
+- Next.js App Router frontend
+- Express.js API backend
+- Prisma ORM with PostgreSQL
+- Tailwind CSS + Framer Motion UI
+- JWT auth with role-based access control
 
-## วิธีเปลี่ยนสคริปต์
+## Local Development
 
-แก้ที่ไฟล์ `assets/config.js`
+1. Install dependencies:
 
-ตัวอย่าง:
-
-```js
-window.APP_CONFIG = {
-    scriptSourceUrl: "https://your-domain.com/script.json",
-};
+```bash
+npm install
 ```
 
-รองรับ 2 แบบ:
+2. Copy env file:
 
-- URL ที่คืนค่าเป็น `JSON` เช่น `{"title":"My Script","description":"...","updatedAt":"2026-06-27","content":"print('hello')" }`
-- URL ที่คืนค่าเป็น `text/plain` หรือไฟล์ `.lua` ตรง ๆ โดยระบบจะเอาทั้งไฟล์มาแสดงเป็นสคริปต์
-- URL ที่เป็นหน้าเว็บ `.html` ใช้ไม่ได้ เพราะระบบจะมองเป็น HTML page ไม่ใช่ตัวสคริปต์จริง
+```bash
+cp .env.example .env
+```
 
-## วิธีเปิดใช้งาน
+3. Generate Prisma client and run migrations:
 
-- เปิดไฟล์ `index.html` ตรง ๆ ในเบราว์เซอร์ได้เลย
-- หรือถ้าจะรันผ่านเซิร์ฟเวอร์ธรรมดา ก็ใช้ Live Server หรือเว็บเซิร์ฟเวอร์ใดก็ได้
+```bash
+npm run db:generate
+npm run db:migrate
+npm run db:seed
+```
 
-## หมายเหตุ
+4. Start frontend and backend:
 
-- หน้า `Home` จะไม่แสดงโค้ดสคริปต์
-- หน้า `Script` จะโหลดโค้ดจาก URL ที่กำหนดใน `assets/config.js`
-- ถ้า URL เป็นคนละโดเมน เว็บปลายทางต้องเปิด `CORS` ให้โหลดได้
-- วิธีนี้ช่วยไม่ให้สคริปต์ฝังอยู่ในไฟล์หน้าเว็บโดยตรง
-- แต่ถ้า URL ปลายทางเปิดสาธารณะ คนที่รู้ลิงก์ก็ยังเปิดไฟล์สคริปต์ตรง ๆ ได้
+```bash
+npm run dev:api
+npm run dev:web
+```
+
+## Render Deployment
+
+- Push repository to GitHub.
+- Create a new Blueprint deployment on Render using `render.yaml`.
+- Provision the managed PostgreSQL database.
+- Set `NEXT_PUBLIC_API_URL` to the API service URL and `FRONTEND_URL` to the web URL.
+- Run `npx prisma migrate deploy` during the API deploy if you add migrations.
+
+## Security Notes
+
+- Upload only Lua scripts you are authorized to store and distribute.
+- The platform serves uploaded script content and metadata; it does not include script obfuscation logic.
